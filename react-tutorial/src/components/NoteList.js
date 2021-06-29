@@ -11,25 +11,27 @@ const BOX = styled.div`
   margin:0 auto
 `
 
-const DIV = styled.div`
+const LI = styled.li`
    width: 300px;
    padding: 1em;
    border-radius: 7px;
    border: 1px dashed #e5b3fe; 
    margin-right: 12px;
-   background-color:#c8e7ff
+   background-color:#c8e7ff;
+   list-style:none
 `
 
-const NoteListIteam = () => {
-    const {notes = []} = useSelector(state => state.notes)
-    console.log("a", notes)
+const NoteListIteam = (props) => {
+    const {notes = []} = useSelector(state => state.notes) 
+    // Allows you to extract data from the Redux store state, using a selector function.
+
     return(
-       <BOX>
-             {notes.map((note) => (
-               <DIV>
-                <span key={note?.id}> {note.title} </span>
-                </DIV>
-             ))}
+       <BOX onClick={props.onClick}>
+            {notes.map((note) => (
+               note.title === '' ?  "warning :Please Add Note" :
+                <LI key={note.id.toString()}> {note.title} </LI> 
+             )) 
+            }
        </BOX>
     )
 }

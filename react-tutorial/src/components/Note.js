@@ -3,6 +3,11 @@ import  styled from 'styled-components';
 import NoteList from './NoteList'
 import { useDispatch } from 'react-redux';
 import { notesActions } from '../actions'
+import Modal from './Modal'
+import useModal from './useModal'
+
+
+
 
 const Wrapper = styled.div` 
     width: 704px;
@@ -37,15 +42,6 @@ const Button = styled.button`
     margin-right:10px;
     border: none
 `
-const BtnIcn = styled.button`
-   color:#2a9d8f;
-   border:none;
-   font-size:14px;
-   background-color: #fff;
-   width:100%;
-   display:flex;
-   justify-content:flex-end
-` 
 const H1 = styled.h1`
    font-size:34px;
    color: #8d99ae
@@ -54,13 +50,13 @@ const DEFAULT_DATA = {
     title: "",
 }
 
+
 const NoteWrapper = () => {
-
     const dispatch = useDispatch();
-
     const [showIteams, setShowItem] = useState(false);
-
     const [formData, setFormData] = useState(DEFAULT_DATA)
+    const {isShowing, toggle} = useModal();
+
     
     const handleChange = (e) => {
        const { name, value } = e.target
@@ -81,17 +77,28 @@ const NoteWrapper = () => {
         setFormData(DEFAULT_DATA)
     }
 
+    const toggleHandler = (e) => {
+        console.log("test", e)
+        toggle();
+    }
+
     return (
         <div>
+            <Modal isShowing={isShowing} closeModal={toggleHandler}>
+              shfdfjhdfhjhdfhjh
+            </Modal>
+
             <Wrapper>
-                <BtnIcn>Delete</BtnIcn>
                    <form onSubmit={handleSubmit}>
                        <Input id="title" type="text" name="title" value={formData?.title}    placeholder="Take a note..." onChange={handleChange} ></Input>
                        <Button onClick={handleClear}>Clear</Button>
                        <Button type="submit" value="submit">Add</Button>
                    </form>
             </Wrapper>
-            {showIteams ? <NoteList/> : <H1>Notes you add appear here</H1>}
+            { showIteams 
+              ? <NoteList onClick={toggleHandler} closeModal={toggleHandler}/>
+              : <H1>Notes you add appear here</H1>
+            }
         </div>
     )
 }

@@ -1,16 +1,15 @@
 import './App.css';
-import React, { Component } from 'react';
+import React from 'react';
 import Note from  './components/Note'
 
 
-class App extends Component {
-  render(){ 
-    return (
-      <div className="App">
-      <Note/>
-      </div>
-    );
-  }
-}
+export default function App() {
 
-export default App;
+    return (
+      <>
+      <div className="App">
+        <Note/>
+      </div>
+      </>
+    );
+}
