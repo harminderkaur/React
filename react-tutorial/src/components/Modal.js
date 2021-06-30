@@ -59,7 +59,7 @@ const Modal = ({isShowing, closeModal, children}) =>
   isShowing 
    ? ReactDOM.createPortal(
     <React.Fragment>
-      <ModalOverlay>
+      <ModalOverlay/>
          <ModalWrapper aria-modal aria-hidden tabIndex={-1} role="dialog"> 
              <ModalMain>
                  <ModalHeader>
@@ -70,7 +70,6 @@ const Modal = ({isShowing, closeModal, children}) =>
                  {children}
              </ModalMain>
          </ModalWrapper>
-      </ModalOverlay>
     </React.Fragment>,
     document.body
   )

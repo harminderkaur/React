@@ -1,6 +1,6 @@
 import React from 'react';
 import  styled from 'styled-components';
-import {useSelector } from 'react-redux';
+// import {useSelector } from 'react-redux';
 
 const BOX = styled.div`
   width: 90%;
@@ -15,25 +15,40 @@ const LI = styled.li`
    width: 300px;
    padding: 1em;
    border-radius: 7px;
-   border: 1px dashed #e5b3fe; 
+   border: 1px dashed #80ffdb; 
    margin-right: 12px;
-   background-color:#c8e7ff;
-   list-style:none
+   background-color:#06d6a0;
+   list-style:none;
+   color:#fff;
+   font-weight:bold
 `
 
-const NoteListIteam = (props) => {
-    const {notes = []} = useSelector(state => state.notes) 
-    // Allows you to extract data from the Redux store state, using a selector function.
+const SPAN = styled.span `
+   padding-top:10px;
+   text-align:left;
+   float:left;
+   font-weight: normal;
+`
+
+export default function NoteListIteam ({note, noteHandler}) {
+   const {
+     title,
+     description
+   } = note;
+   
+   
 
     return(
-       <BOX onClick={props.onClick}>
-            {notes.map((note) => (
-               note.title === '' ?  "warning :Please Add Note" :
-                <LI key={note.id.toString()}> {note.title} </LI> 
-             )) 
-            }
+       <BOX onClick={() => noteHandler(note)}>
+         <LI> 
+            {title} 
+            <br></br>
+            <hr></hr>
+            <SPAN>
+                  {description}
+            </SPAN>
+         </LI>    
        </BOX>
     )
 }
 
-export default NoteListIteam;
