@@ -45,3 +45,22 @@
 .border-pink {
   border-color: pink;
 }
+
+.outerFormWrapper {
+  width: 704px;
+  padding: 1em;
+  border-radius: 7px;
+  box-shadow: 1px 1px 5px #cdcdcd;
+  margin: 70px auto;
+}
+
+.button {
+  width: 120px;
+  background-color: #ef476f;
+  color: #fff;
+  padding: 8px;
+  font-size: 19px;
+  font-weight: bold;
+  margin-right: 10px;
+  border: 1px dashed #ffc8dd;
+}

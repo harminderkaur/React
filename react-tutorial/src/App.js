@@ -1,7 +1,6 @@
 import './App.css';
 import React, {useState} from 'react';
-import  styled from 'styled-components';
-import Note from  './components/Note'
+import Form from  './components/Form'
 import NoteList from './components/NoteList'
 import {useSelector } from 'react-redux';
 import Modal from './components/Modal'
@@ -13,11 +12,13 @@ export default function App() {
   const [selectNote, setSelectNote] = useState(null)
   const {isShowing, toggle} = useModal();
   const {notes = []} = useSelector(state => state.notes) 
-     
-// Allows you to extract data from the Redux store state, using a selector function.
+   // Allows you to extract data from the Redux store state, using a selector function.
+   
+  const [showBtn, setShowBtn] = useState(true)
 
   const toggleHandler = (e) => {
-    console.log("test", e)
+    setSelectNote(null)
+    setShowBtn(!showBtn)
     toggle();
   }
   const noteHandler = (data) => {
@@ -29,15 +30,14 @@ export default function App() {
   return (
       <>
       <div className="App">
-
       <Modal isShowing={isShowing} closeModal={toggleHandler}>
-        <Note selectNote={selectNote} />
+         <Form selectNote={selectNote} toggleHandler={toggleHandler} showBtn={showBtn} />
       </Modal>
-
-      <Note/>
-
+      <div className="outerFormWrapper">
+         <Form/>
+      </div>
       {notes.map(note => (
-        <NoteList note={note} key={note?.id} noteHandler={noteHandler}/>
+        <NoteList note={note} key={note.id} noteHandler={noteHandler} />
         ))
       }
       </div>

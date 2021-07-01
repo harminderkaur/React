@@ -1,14 +1,14 @@
 import React from 'react';
 import  styled from 'styled-components';
-// import {useSelector } from 'react-redux';
 
 const BOX = styled.div`
-  width: 90%;
+  width:auto;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: flex-start;
-  margin:0 auto
+  float:left;
+  cursor:pointer;
 `
 
 const LI = styled.li`
@@ -36,10 +36,8 @@ export default function NoteListIteam ({note, noteHandler}) {
      description
    } = note;
    
-   
-
     return(
-       <BOX onClick={() => noteHandler(note)}>
+       <BOX onClick={() => noteHandler(note)} >
          <LI> 
             {title} 
             <br></br>

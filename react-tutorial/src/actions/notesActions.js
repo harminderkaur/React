@@ -8,8 +8,27 @@ const addNote = data => dispatch =>{
     })
 }
 
+const updateNote = data => dispatch => {
+    console.log("update action", data)
+    dispatch({
+        type:NOTES_TYPES.UPDATE_NOTE,
+        payload:data
+    })
+}
+
+const deleteNote = data => dispatch =>{
+    console.log("delete action", data)
+    dispatch({
+        type:NOTES_TYPES.DELETE_NOTE,
+        payload:data
+    })
+}
+
+
 const notesActions = {
-    addNote
+    addNote,
+    updateNote,
+    deleteNote
 };
 
 export default notesActions;

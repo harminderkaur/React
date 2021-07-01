@@ -1,17 +1,9 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import  styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { notesActions } from '../actions'
 
 
-
-const Wrapper = styled.div` 
-    width: 704px;
-    padding: 1em;
-    border-radius: 7px;
-    box-shadow: 1px 1px 5px #cdcdcd;
-    margin: 70px auto;
-`
 const Input = styled.input`
     width: 89%;
     border: 0px solid;
@@ -51,40 +43,53 @@ const DEFAULT_DATA = {
     description:""
 }
 
-const NoteWrapper = () => {
+const Form = ({selectNote, toggleHandler, showBtn}) => {
     const dispatch = useDispatch();
     const [formData, setFormData] = useState(DEFAULT_DATA)
-    
+  
+    useEffect(() => {
+        setFormData(selectNote)
+    },[selectNote]);
     const handleChange = (e) => {
        const { name, value } = e.target
        const newForm = { ...formData};
        newForm[name] = value
        setFormData(newForm)
     }
-
-    const handleSubmit = e => {
+    const saveBtn = e => {
         e.preventDefault();
         console.log("add note", formData)
         dispatch(notesActions.addNote(formData))
     }
-
+    const updateBtn = (e) => {
+        e.preventDefault();
+        console.log("update note", formData)
+        dispatch(notesActions.updateNote(formData))
+        toggleHandler();
+    }
     const handleClear = e =>{
         e.preventDefault();
         setFormData(DEFAULT_DATA)
     }
 
+    const handleDelete = e => {
+        e.preventDefault();
+        console.log("s", formData)
+        dispatch(notesActions.deleteNote(formData))
+        toggleHandler();
+    }
+
     return (
-         <>
-            <Wrapper>
-                   <form onSubmit={handleSubmit}>
-                          <Input id="title" type="text" name="title" value={formData?.title} placeholder="Title..." onChange={handleChange} ></Input>
-                          <TEXTAREA id="description" type="text" name="description" placeholder="Take a note..." value={formData?.description} onChange={handleChange}></TEXTAREA>
-                          <Button onClick={handleClear}>Clear</Button>
-                          <Button type="submit" value="submit">Add</Button>
-                   </form>
-            </Wrapper>
-        </>
+     <>
+        <form>
+           <Input id="title" type="text" name="title" value={formData?.title} placeholder="Title..."  onChange={handleChange} ></Input>
+           <TEXTAREA id="description" type="text" name="description" placeholder="Take a note..." value= {formData?.description} 
+            onChange={handleChange}></TEXTAREA>
+            {showBtn ? <Button onClick={handleDelete}>Delete</Button>: <Button onClick={handleClear} >Clear</Button> }
+           {showBtn ? <Button onClick={updateBtn}>Update</Button> : <Button onClick={saveBtn}>Save</ Button> }
+        </form>
+     </>
     )
 }
 
-export default NoteWrapper
+export default Form;
