@@ -3,7 +3,6 @@ import  styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { notesActions } from '../actions'
 
-
 const Input = styled.input`
     width: 89%;
     border: 0px solid;
@@ -60,6 +59,7 @@ const Form = ({selectNote, toggleHandler, showBtn}) => {
         e.preventDefault();
         console.log("add note", formData)
         dispatch(notesActions.addNote(formData))
+        setFormData(DEFAULT_DATA)
     }
     const updateBtn = (e) => {
         e.preventDefault();
@@ -71,22 +71,20 @@ const Form = ({selectNote, toggleHandler, showBtn}) => {
         e.preventDefault();
         setFormData(DEFAULT_DATA)
     }
-
     const handleDelete = e => {
         e.preventDefault();
         console.log("s", formData)
         dispatch(notesActions.deleteNote(formData))
         toggleHandler();
     }
-
     return (
      <>
         <form>
            <Input id="title" type="text" name="title" value={formData?.title} placeholder="Title..."  onChange={handleChange} ></Input>
            <TEXTAREA id="description" type="text" name="description" placeholder="Take a note..." value= {formData?.description} 
             onChange={handleChange}></TEXTAREA>
-            {showBtn ? <Button onClick={handleDelete}>Delete</Button>: <Button onClick={handleClear} >Clear</Button> }
-           {showBtn ? <Button onClick={updateBtn}>Update</Button> : <Button onClick={saveBtn}>Save</ Button> }
+            {showBtn ? <Button onClick={handleDelete}>Delete</Button> : <Button onClick={handleClear} >Clear</Button> }
+           {showBtn ? <Button onClick={updateBtn}>Update</Button> : <Button onClick={saveBtn}>Add</ Button> }
         </form>
      </>
     )

@@ -124,7 +124,7 @@ const Avatar = styled.div`
 export default function UserProfileCard({ userInfo }) {
   return (
     <Card>
-      <Avatar>aSas
+      <Avatar>
         {/* <img src={userInfo.avatar} alt="Victor avatar"/> */}
       </Avatar>
       <div className="basic-info">

@@ -23,7 +23,6 @@ const ModalWrapper = styled.div`
   overflow-y: auto;
   outline: 0;
 `;
-
 const ModalMain = styled.div`
   z-index: 100;
   background: white;
@@ -33,12 +32,10 @@ const ModalMain = styled.div`
   max-width: 500px;
   padding: 2rem;
 `;
-
 const ModalHeader = styled.div`
   display: flex;
   justify-content: flex-end;
 `;
-
 const ModalCloseBtn = styled.button`
   font-size: 1.4rem;
   font-weight: 700;

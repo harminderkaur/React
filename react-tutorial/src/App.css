@@ -64,3 +64,15 @@
   margin-right: 10px;
   border: 1px dashed #ffc8dd;
 }
+
+.img {
+  width: 7%;
+  margin: 0 auto;
+  opacity: 0.4;
+  cursor: default;
+}
+
+.bulbTxt {
+  margin-top: 15px;
+  cursor: default;
+}

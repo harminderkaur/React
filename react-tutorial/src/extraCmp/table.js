@@ -1,5 +1,3 @@
-
-
 const TableHeader = () => {
     return (
         <thead>

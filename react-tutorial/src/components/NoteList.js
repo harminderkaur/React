@@ -9,8 +9,8 @@ const BOX = styled.div`
   align-items: flex-start;
   float:left;
   cursor:pointer;
+  margin-bottom: 15px;
 `
-
 const LI = styled.li`
    width: 300px;
    padding: 1em;
@@ -22,14 +22,12 @@ const LI = styled.li`
    color:#fff;
    font-weight:bold
 `
-
 const SPAN = styled.span `
    padding-top:10px;
    text-align:left;
    float:left;
    font-weight: normal;
 `
-
 export default function NoteListIteam ({note, noteHandler}) {
    const {
      title,
